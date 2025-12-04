@@ -229,6 +229,33 @@ def load_css():
         border-radius: 10px;
         margin-bottom: 10px;
     }
+    
+    /* BMI Conversion Help */
+    .conversion-help {
+        background: #f5f5f5;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    .conversion-help h4 {
+        color: #666;
+        margin-bottom: 10px;
+    }
+    .conversion-help p {
+        color: #555;
+        font-size: 0.9rem;
+        margin: 5px 0;
+    }
+    
+    /* Form spacing */
+    .stForm {
+        padding: 20px 0;
+    }
+    
+    /* Column spacing */
+    .stColumn > div {
+        padding: 0 10px;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -262,6 +289,10 @@ class MedwiseApp:
                 'tiredness': False, 'hair_fall': False, 'frequent_urination': False,
                 'family_pcos': False, 'family_thyroid': False, 'family_diabetes': False
             }
+        if 'bmi_result' not in st.session_state:
+            st.session_state.bmi_result = None
+        if 'bmi_category' not in st.session_state:
+            st.session_state.bmi_category = None
         
     def run(self):
         # Show login if not authenticated
@@ -308,6 +339,8 @@ class MedwiseApp:
                 st.session_state.authenticated = False
                 st.session_state.current_user = None
                 st.session_state.assessment_history = []
+                st.session_state.bmi_result = None
+                st.session_state.bmi_category = None
                 st.rerun()
             
             # Update current page in session state
@@ -425,17 +458,16 @@ class MedwiseApp:
         st.markdown('<div class="main-header">Medwise-Women</div>', unsafe_allow_html=True)
         st.markdown('<div class="sub-header">Patient Health & Hospital Recommendation System</div>', unsafe_allow_html=True)
         st.markdown('<div class="tagline">Empowering Women\'s Health Through AI</div>', unsafe_allow_html=True)
-    
-       
+        
         col1, col2 = st.columns([2, 1])
-    
+        
         with col1:
             st.markdown("""
             ### Welcome to Your Personal Health Companion
-        
+            
             Medwise-Women helps you assess your risk for common women's health conditions 
             and connects you with the right specialists for your needs.
-        
+            
             **Key Features:**
             - 🩺 AI-powered health risk assessment
             - 📊 BMI Calculator & Health Metrics
@@ -444,11 +476,11 @@ class MedwiseApp:
             - 📈 Health history tracking
             - 🎯 Condition-specific guidance
             """)
-        
+            
             # Simple instruction instead of button
             st.markdown("---")
             st.info("💡 **Get Started**: Use the sidebar navigation on the left to access Health Assessment and other features!")
-    
+        
         with col2:
             # Health stats or quick info
             st.markdown("""
@@ -459,9 +491,16 @@ class MedwiseApp:
                 </p>
             </div>
             """, unsafe_allow_html=True)
-
-
             
+            st.markdown("""
+            <div style='background: #e3f2fd; padding: 20px; border-radius: 10px; margin-top: 20px;'>
+                <h4 style='color: #1565c0; text-align: center;'>🏆 Why Choose Medwise?</h4>
+                <p style='text-align: center; color: #555; margin: 0;'>
+                    Personalized • Accurate • Secure • Women-Focused
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+
     def reference_ranges_page(self):
         st.markdown('<div class="main-header">Reference Ranges</div>', unsafe_allow_html=True)
         st.markdown('<div class="sub-header">Normal Health Parameter Ranges</div>', unsafe_allow_html=True)
@@ -553,7 +592,7 @@ class MedwiseApp:
         
         form_data = st.session_state.form_data
         
-        with st.form("health_assessment"):
+        with st.form("health_assessment", clear_on_submit=False):
             col1, col2 = st.columns(2)
             
             with col1:
@@ -610,39 +649,48 @@ class MedwiseApp:
             </div>
             """, unsafe_allow_html=True)
             
+            # Initialize session state for BMI calculation
+            if 'bmi_calc_done' not in st.session_state:
+                st.session_state.bmi_calc_done = False
+            
             with st.form("bmi_calculator"):
                 st.subheader("Calculate Your BMI")
                 
                 col_a, col_b = st.columns(2)
                 
                 with col_a:
-                    height_unit = st.radio("Height Unit", ["cm", "feet"], horizontal=True)
+                    height_unit = st.radio("Height Unit", ["cm", "feet"], horizontal=True, key="height_unit")
                     if height_unit == "cm":
-                        height = st.number_input("Height (cm)", min_value=100, max_value=250, value=165)
+                        height_cm = st.number_input("Height (cm)", min_value=100.0, max_value=250.0, value=165.0, step=0.1, key="height_cm")
                     else:
                         col_feet, col_inches = st.columns(2)
                         with col_feet:
-                            feet = st.number_input("Feet", min_value=4, max_value=7, value=5)
+                            feet = st.number_input("Feet", min_value=4, max_value=7, value=5, key="feet")
                         with col_inches:
-                            inches = st.number_input("Inches", min_value=0, max_value=11, value=5)
-                        height = (feet * 12 + inches) * 2.54
-                        st.write(f"Height: {height:.1f} cm")
+                            inches = st.number_input("Inches", min_value=0, max_value=11, value=5, key="inches")
+                        # Convert feet and inches to cm
+                        height_cm = (feet * 12 + inches) * 2.54
+                        st.info(f"**Converted Height:** {height_cm:.1f} cm")
                 
                 with col_b:
-                    weight_unit = st.radio("Weight Unit", ["kg", "lbs"], horizontal=True)
-                    weight = st.number_input(f"Weight ({weight_unit})", min_value=30.0, max_value=200.0, value=60.0, step=0.1)
+                    weight_unit = st.radio("Weight Unit", ["kg", "lbs"], horizontal=True, key="weight_unit")
+                    weight_input = st.number_input(f"Weight ({weight_unit})", min_value=30.0, max_value=200.0, value=60.0, step=0.1, key="weight_input")
+                    
+                    # Convert weight to kg if in lbs
+                    if weight_unit == "lbs":
+                        weight_kg = weight_input * 0.453592
+                        st.info(f"**Converted Weight:** {weight_kg:.1f} kg")
+                    else:
+                        weight_kg = weight_input
                 
                 calculate_bmi = st.form_submit_button("Calculate BMI", type="primary", use_container_width=True)
                 
                 if calculate_bmi:
-                    if weight_unit == "lbs":
-                        weight_kg = weight * 0.453592
-                    else:
-                        weight_kg = weight
-                    
-                    height_m = height / 100
+                    # Calculate BMI
+                    height_m = height_cm / 100
                     bmi = weight_kg / (height_m ** 2)
                     
+                    # Determine BMI category
                     if bmi < 18.5:
                         category = "Underweight"
                         color = "#2196f3"
@@ -660,13 +708,66 @@ class MedwiseApp:
                         color = "#f44336"
                         advice = "Consult healthcare provider for comprehensive weight management"
                     
-                    st.success(f"**Your BMI: {bmi:.1f}**")
-                    st.markdown(f"""
-                    <div style='background-color: {color}20; padding: 20px; border-radius: 10px; border-left: 5px solid {color}; margin: 15px 0;'>
-                        <h4 style='color: {color}; margin: 0 0 10px 0;'>Category: {category}</h4>
-                        <p style='color: #555; margin: 0;'>{advice}</p>
-                    </div>
-                    """, unsafe_allow_html=True)
+                    # Store in session state
+                    st.session_state.bmi_result = bmi
+                    st.session_state.bmi_category = category
+                    st.session_state.bmi_color = color
+                    st.session_state.bmi_advice = advice
+                    st.session_state.bmi_calc_done = True
+            
+            # Display BMI results outside the form
+            if st.session_state.bmi_calc_done and st.session_state.bmi_result is not None:
+                bmi = st.session_state.bmi_result
+                category = st.session_state.bmi_category
+                color = st.session_state.bmi_color
+                advice = st.session_state.bmi_advice
+                
+                st.markdown("---")
+                st.success(f"**Your BMI Result: {bmi:.1f}**")
+                st.markdown(f"""
+                <div style='background-color: {color}20; padding: 20px; border-radius: 10px; border-left: 5px solid {color}; margin: 15px 0;'>
+                    <h4 style='color: {color}; margin: 0 0 10px 0;'>Category: {category}</h4>
+                    <p style='color: #555; margin: 0;'>{advice}</p>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                # Add a visualization of BMI category
+                fig = go.Figure(go.Indicator(
+                    mode = "gauge+number",
+                    value = bmi,
+                    domain = {'x': [0, 1], 'y': [0, 1]},
+                    title = {'text': "BMI Score", 'font': {'size': 24}},
+                    gauge = {
+                        'axis': {'range': [None, 40], 'tickwidth': 1, 'tickcolor': "darkblue"},
+                        'bar': {'color': color, 'thickness': 0.8},
+                        'bgcolor': "white",
+                        'borderwidth': 2,
+                        'bordercolor': "gray",
+                        'steps': [
+                            {'range': [0, 18.5], 'color': "#e3f2fd"},
+                            {'range': [18.5, 25], 'color': "#e8f5e9"},
+                            {'range': [25, 30], 'color': "#fff3e0"},
+                            {'range': [30, 40], 'color': "#ffebee"}
+                        ],
+                        'threshold': {
+                            'line': {'color': color, 'width': 4},
+                            'thickness': 0.75,
+                            'value': bmi
+                        }
+                    }
+                ))
+                fig.update_layout(
+                    height=300,
+                    margin=dict(l=20, r=20, t=50, b=20)
+                )
+                st.plotly_chart(fig, use_container_width=True)
+                
+                # Add a reset button
+                if st.button("Calculate New BMI", type="secondary"):
+                    st.session_state.bmi_calc_done = False
+                    st.session_state.bmi_result = None
+                    st.session_state.bmi_category = None
+                    st.rerun()
         
         with col2:
             st.markdown("""
@@ -699,6 +800,17 @@ class MedwiseApp:
                 </ul>
             </div>
             """, unsafe_allow_html=True)
+            
+            # Add weight conversion helper
+            st.markdown("""
+            <div class="conversion-help">
+                <h4>📝 Conversion Help</h4>
+                <p><strong>Height Conversion:</strong></p>
+                <p>1 foot = 30.48 cm<br>1 inch = 2.54 cm</p>
+                <p><strong>Weight Conversion:</strong></p>
+                <p>1 pound (lb) = 0.4536 kg</p>
+            </div>
+            """, unsafe_allow_html=True)
 
     def doctor_recommendations_page(self):
         st.markdown('<div class="main-header">Find Specialists & Hospitals</div>', unsafe_allow_html=True)
@@ -715,6 +827,7 @@ class MedwiseApp:
             location = st.selectbox("Location", all_locations)
         
         with col3:
+            st.write("")
             st.write("")
             search_btn = st.button("🔍 Search Doctors", type="primary", use_container_width=True)
         
