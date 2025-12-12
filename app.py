@@ -113,7 +113,7 @@ class MedwiseApp:
                     else:
                         st.error("Please enter username and password")
 
-        st.info("Demo: `demo` / `demo123` | `admin` / `admin123`")
+        st.info("Demo: `demo` / `demo123`")
 
     def sidebar(self):
         with st.sidebar:
