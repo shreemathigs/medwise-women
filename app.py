@@ -304,7 +304,7 @@ class MedwiseApp:
         with col2:
             st.markdown("""
             <div style='background: #e8f5e9; padding: 20px; border-radius: 10px; margin-top: 20px;'>
-                <h4 style='color: #2e7d32; text-align: center;'>📈 Health Stats</h4>
+                <h4 style='color: #2e7d32; text-align: center;'>Health Stats</h4>
                 <p style='text-align: center; color: #555; margin: 0;'>
                     Regular health assessments can help in early detection and prevention of diseases.
                 </p>
@@ -327,7 +327,7 @@ class MedwiseApp:
         # BMI Categories
         st.markdown("""
         <div style="background:#e8f5e9;padding:20px;border-radius:12px;border-left:6px solid #4caf50;margin:15px 0;">
-            <h3 style="color:#2e7d32;margin:0;">📏 BMI Categories</h3>
+            <h3 style="color:#2e7d32;margin:0;">BMI Categories</h3>
             <ul style="color:#1b5e20;">
                 <li><strong>Underweight:</strong> &lt; 18.5</li>
                 <li><strong>Normal:</strong> 18.5 – 24.9</li>
@@ -340,7 +340,7 @@ class MedwiseApp:
         # Blood Sugar
         st.markdown("""
         <div style="background:#fff3e0;padding:20px;border-radius:12px;border-left:6px solid #ff9800;margin:15px 0;">
-            <h3 style="color:#ef6c00;margin:0;">🩸 Blood Sugar (mg/dL)</h3>
+            <h3 style="color:#ef6c00;margin:0;">Blood Sugar (mg/dL)</h3>
             <ul style="color:#e65100;">
                 <li><strong>Normal:</strong> 70 – 99</li>
                 <li><strong>Pre-diabetes:</strong> 100 – 125</li>
@@ -352,7 +352,7 @@ class MedwiseApp:
         # TSH Level
         st.markdown("""
         <div style="background:#e3f2fd;padding:20px;border-radius:12px;border-left:6px solid #2196f3;margin:15px 0;">
-            <h3 style="color:#1565c0;margin:0;">🦋 TSH Level (mIU/L)</h3>
+            <h3 style="color:#1565c0;margin:0;">TSH Level (mIU/L)</h3>
             <ul style="color:#0d47a1;">
                 <li><strong>Normal:</strong> 0.4 – 4.0</li>
                 <li><strong>Low:</strong> &lt; 0.4 → Hyperthyroidism</li>
@@ -372,7 +372,7 @@ class MedwiseApp:
         with col1:
             st.markdown("""
             <div style='background: #e8f5e9; padding: 15px; border-radius: 10px; border-left: 4px solid #4caf50;'>
-                <h4 style='color: #2e7d32; margin: 0;'>📏 BMI Range</h4>
+                <h4 style='color: #2e7d32; margin: 0;'>BMI Range</h4>
                 <p style='color: #555; margin: 5px 0 0 0;'>Normal: 18.5 - 24.9</p>
             </div>
             """, unsafe_allow_html=True)
@@ -380,7 +380,7 @@ class MedwiseApp:
         with col2:
             st.markdown("""
             <div style='background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 4px solid #2196f3;'>
-                <h4 style='color: #1565c0; margin: 0;'>🦋 TSH Range</h4>
+                <h4 style='color: #1565c0; margin: 0;'>TSH Range</h4>
                 <p style='color: #555; margin: 5px 0 0 0;'>Normal: 0.4 - 4.0 mIU/L</p>
             </div>
             """, unsafe_allow_html=True)
@@ -388,7 +388,7 @@ class MedwiseApp:
         with col3:
             st.markdown("""
             <div style='background: #fff3e0; padding: 15px; border-radius: 10px; border-left: 4px solid #ff9800;'>
-                <h4 style='color: #ef6c00; margin: 0;'>🩸 Sugar Range</h4>
+                <h4 style='color: #ef6c00; margin: 0;'>Sugar Range</h4>
                 <p style='color: #555; margin: 5px 0 0 0;'>Normal: 70 - 100 mg/dL</p>
             </div>
             """, unsafe_allow_html=True)
@@ -434,7 +434,7 @@ class MedwiseApp:
         
         if st.session_state.last_assessment:
             st.markdown("---")
-            st.subheader("📋 Last Assessment Results")
+            st.subheader("Last Assessment Results")
             self.display_previous_results(st.session_state.last_assessment)
 
     def bmi_calculator_page(self):
@@ -445,7 +445,7 @@ class MedwiseApp:
         with col1:
             st.markdown("""
             <div class="bmi-calculator-card">
-                <h3 style="color:#0d47a1;margin:0">📊 BMI Calculator</h3>
+                <h3 style="color:#0d47a1;margin:0">BMI Calculator</h3>
                 <p>Calculate your Body Mass Index (BMI) to understand your weight category and health risks.</p>
             </div>
             """, unsafe_allow_html=True)
@@ -557,7 +557,7 @@ class MedwiseApp:
             
             st.markdown("""
             <div class="health-implications-card">
-                <h4 style="color:#e65100;margin:0;">🏥 Health Implications</h4>
+                <h4 style="color:#e65100;margin:0;">Health Implications</h4>
                 <p><strong>High BMI (≥25) may increase risk of:</strong></p>
                 <ul>
                     <li>Heart disease</li>
@@ -597,7 +597,7 @@ class MedwiseApp:
         with col3:
             st.write("")
             st.write("")
-            search_btn = st.button("🔍 Search Doctors", type="primary", use_container_width=True)
+            search_btn = st.button("Search Doctors", type="primary", use_container_width=True)
         
         if search_btn:
             doctors_data = db.get_doctors_by_specialty(
@@ -615,7 +615,7 @@ class MedwiseApp:
         doctors_to_display = st.session_state.doctors if st.session_state.doctors else db.get_doctors_by_specialty(None, None)
         
         if doctors_to_display:
-            st.subheader(f"👨‍⚕️ Available Doctors ({len(doctors_to_display)})")
+            st.subheader(f"Available Doctors ({len(doctors_to_display)})")
             
             for doctor in doctors_to_display[:20]:  # Limit to 20 for display
                 rating = doctor['rating']
@@ -623,7 +623,7 @@ class MedwiseApp:
                 
                 st.markdown(f"""
                 <div class="doctor-card">
-                    <h4 style="color: #e91e63; margin-bottom: 10px;">👨‍⚕️ {doctor['name']}</h4>
+                    <h4 style="color: #e91e63; margin-bottom: 10px;">{doctor['name']}</h4>
                     <p><strong>Specialty:</strong> {doctor['specialty']}</p>
                     <p><strong>Hospital:</strong> {doctor['hospital']}, {doctor['location']}</p>
                     <p><strong>Rating:</strong> <span style='color: {rating_color}; font-weight: bold;'>{rating}/5 ⭐</span></p>
@@ -639,7 +639,7 @@ class MedwiseApp:
         assessments = db.get_user_assessments(st.session_state.current_user)
         
         if assessments:
-            st.success(f"📊 You have {len(assessments)} assessment(s) in your history")
+            st.success(f"You have {len(assessments)} assessment(s) in your history")
             for i, assessment in enumerate(assessments):
                 with st.expander(f"Assessment {i+1} - {assessment['timestamp']}", expanded=i==0):
                     col1, col2 = st.columns(2)
@@ -667,7 +667,7 @@ class MedwiseApp:
     def disease_info_page(self):
         st.markdown('<div class="main-header">Women\'s Health Information</div>', unsafe_allow_html=True)
         
-        tab1, tab2, tab3 = st.tabs(["🎀 PCOS", "🦋 Thyroid Disorders", "🩺 Diabetes"])
+        tab1, tab2, tab3 = st.tabs(["PCOS", "Thyroid Disorders", "Diabetes"])
         
         with tab1:
             col1, col2 = st.columns(2)
@@ -883,7 +883,7 @@ class MedwiseApp:
         return diagnosis
 
     def display_results(self, predictions, name, input_data):
-        st.success("🎉 Assessment Complete!")
+        st.success("Assessment Complete!")
         
         overall_risk = self.calculate_overall_risk(predictions)
         risk_class = "risk-high" if overall_risk == "High" else "risk-medium" if overall_risk == "Medium" else "risk-low"
@@ -906,7 +906,7 @@ class MedwiseApp:
         
         diagnosis = self.get_disease_diagnosis(predictions, input_data)
         
-        st.subheader("🔍 Disease Diagnosis")
+        st.subheader("Disease Diagnosis")
         col1, col2 = st.columns(2)
         
         with col1:
@@ -921,7 +921,7 @@ class MedwiseApp:
             {len(diagnosis['symptoms_matched'])} symptoms identified
             """)
         
-        st.subheader("📊 Disease Risk Analysis")
+        st.subheader("Disease Risk Analysis")
         col1, col2 = st.columns([2, 1])
         
         with col1:
@@ -956,7 +956,7 @@ class MedwiseApp:
         self.show_recommendations(predictions, diagnosis)
 
     def show_recommendations(self, predictions, diagnosis):
-        st.markdown('<div class="sub-header">💡 Personalized Recommendations</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sub-header">Personalized Recommendations</div>', unsafe_allow_html=True)
         
         specialists = self.get_recommended_specialists(predictions)
         
@@ -977,7 +977,7 @@ class MedwiseApp:
         # Show doctors from database
         doctors = db.get_doctors_by_specialty()
         if doctors:
-            st.subheader("🏥 Available Doctors in Database")
+            st.subheader("Available Doctors in Database")
             
             for doctor in doctors[:5]:
                 rating = doctor['rating']
