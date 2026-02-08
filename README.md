@@ -101,7 +101,6 @@ medwise-women/
 - **Python 3.9+** – Core programming language  
 - **Streamlit** – Web application framework  
 - **SQLite** – Lightweight database  
-- **SQLAlchemy** – Database ORM (if implemented)  
 
 ### Data Science & Machine Learning
 - **Scikit-learn** – Machine learning algorithms  
