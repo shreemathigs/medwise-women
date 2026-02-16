@@ -6,7 +6,7 @@ An AI-powered digital health platform designed specifically for women's healthca
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 - [Overview](#-overview)
 - [Features](#-features)
 - [Project Structure](#-project-structure)
@@ -20,11 +20,11 @@ An AI-powered digital health platform designed specifically for women's healthca
 
 ---
 
-## 📖 Overview
+## Overview
 
 **Medwise-Women** is an innovative healthcare solution that bridges the gap between initial symptom recognition and professional medical consultation. The platform empowers women to take proactive control of their health through AI-powered risk assessment and connects them with appropriate healthcare specialists.
 
-### 🔑 Key Highlights
+### Key Highlights
 - **AI-Powered Diagnostics:** Machine learning models for accurate risk prediction  
 - **Personalized Recommendations:** Tailored doctor suggestions based on location and specialty  
 - **Comprehensive Health Tracking:** Maintain complete health history and progress monitoring  
@@ -32,14 +32,14 @@ An AI-powered digital health platform designed specifically for women's healthca
 
 ---
 
-## ✨ Features
+## Features
 
-### 🧠 Health Assessment
+### Health Assessment
 - Multi-parameter risk evaluation for PCOS, thyroid disorders, and diabetes  
 - Real-time analysis of symptoms and health metrics  
 - Personalized health insights and recommendations  
 
-### 📊 BMI Calculator
+### BMI Calculator
 - Interactive BMI calculation with visual analytics  
 - Health category classification:
   - Underweight
@@ -48,19 +48,19 @@ An AI-powered digital health platform designed specifically for women's healthca
   - Obese  
 - Progress tracking and historical data visualization  
 
-### 🏥 Doctor Recommendation System
+### Doctor Recommendation System
 - Location-based specialist filtering  
 - Specialty matching based on health conditions  
 - Rating-based doctor ranking system  
 - Comprehensive doctor profiles with contact information  
 
-### 👩‍⚕️ Admin Dashboard
+### Admin Dashboard
 - User analytics and engagement metrics  
 - Assessment statistics and disease distribution  
 - System performance monitoring  
 - Comprehensive reporting capabilities  
 
-### 🔐 Security & Privacy
+### Security & Privacy
 - Secure user authentication with password hashing  
 - Encrypted data storage  
 - Session management and access control  
@@ -68,7 +68,7 @@ An AI-powered digital health platform designed specifically for women's healthca
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 medwise-women/
@@ -95,7 +95,7 @@ medwise-women/
 ```
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Backend
 - **Python 3.9+** – Core programming language  
@@ -119,7 +119,7 @@ medwise-women/
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 - Python 3.9 or higher  
@@ -155,12 +155,12 @@ streamlit run app.py
 ```bash
 http://localhost:8501
 ```
-## 🌐 Live Demo
+## Live Demo
 
-🚀 **Try the Medwise-Women App here:**  
+ **Try the Medwise-Women App here:**  
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-brightgreen)](https://medwise-women-6epbkmzpdjgtueoiv3ea4e.streamlit.app/)
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This project is developed **strictly for academic and demonstration purposes**.  
 All data used in this application is **dummy / synthetic data** and does **not represent real patient information**.  
@@ -169,7 +169,7 @@ The predictions and recommendations provided by this system are **not medical ad
 Always consult a qualified healthcare professional for medical concerns.
 
 ---
-## 📜 License
+## License
 
 This project is developed for **academic and educational purposes only**.  
 All source code and materials are provided for learning and demonstration.
@@ -178,7 +178,7 @@ You may view, fork, and reference this repository for non-commercial use.
 For commercial usage or redistribution, please contact the author.
 
 ---
-## 📬 Contact
+## Contact
 
 **Shreemathi G.S**   
 
