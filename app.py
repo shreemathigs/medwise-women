@@ -290,16 +290,16 @@ class MedwiseApp:
             and connects you with the right specialists for your needs.
             
             **Key Features:**
-            - 🩺 AI-powered health risk assessment
-            - 📊 BMI Calculator & Health Metrics
-            - 🏥 Personalized doctor recommendations
-            - 💡 Prevention tips and exercises
-            - 📈 Health history tracking
-            - 🎯 Condition-specific guidance
+            - AI-powered health risk assessment
+            - BMI Calculator & Health Metrics
+            - Personalized doctor recommendations
+            - Prevention tips and exercises
+            - Health history tracking
+            - Condition-specific guidance
             """)
             
             st.markdown("---")
-            st.info("💡 **Get Started**: Use the sidebar navigation on the left to access Health Assessment and other features!")
+            st.info(" **Get Started**: Use the sidebar navigation on the left to access Health Assessment and other features!")
         
         with col2:
             st.markdown("""
@@ -313,7 +313,7 @@ class MedwiseApp:
             
             st.markdown("""
             <div style='background: #e3f2fd; padding: 20px; border-radius: 10px; margin-top: 20px;'>
-                <h4 style='color: #1565c0; text-align: center;'>🏆 Why Choose Medwise?</h4>
+                <h4 style='color: #1565c0; text-align: center;'>Why Choose Medwise?</h4>
                 <p style='text-align: center; color: #555; margin: 0;'>
                     Personalized • Accurate • Secure • Women-Focused
                 </p>
@@ -961,7 +961,7 @@ class MedwiseApp:
         specialists = self.get_recommended_specialists(predictions)
         
         if specialists:
-            st.subheader("👩‍⚕️ Recommended Specialists")
+            st.subheader(" Recommended Specialists")
             
             for specialist in specialists:
                 priority_text = "High Priority" if specialist['priority'] == 1 else "Medium Priority"
