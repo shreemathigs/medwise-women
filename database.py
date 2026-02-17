@@ -234,6 +234,7 @@ class UserDatabase:
         except Exception as e:
             print(f"Error getting assessments: {e}")
             return []
+
     
     def insert_comprehensive_doctors(self):
         """Insert comprehensive doctors data with all locations"""
@@ -294,9 +295,11 @@ class UserDatabase:
                 "INSERT INTO doctors (name, specialty, hospital, location, rating, contact) VALUES (?, ?, ?, ?, ?, ?)",
                 doctors_data
             )
+            print(f"Inserted {len(doctors_data)} doctors with locations: Chennai, Coimbatore, Tiruchirappalli, Madurai, Bangalore")
         
         conn.commit()
         conn.close()
+        
     
     def get_doctors_by_specialty(self, specialty=None, location=None):
         """Get doctors filtered by specialty and location"""
