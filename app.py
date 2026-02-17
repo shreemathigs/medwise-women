@@ -36,6 +36,14 @@ def load_css():
     .health-implications-card {background: #fff3e0; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #ff9800; color: #e65100;}
     </style>
     """, unsafe_allow_html=True)
+if 'authenticated' not in st.session_state:
+    st.session_state.authenticated = False
+if 'current_user' not in st.session_state:
+    st.session_state.current_user = None
+if 'current_page' not in st.session_state:
+    st.session_state.current_page = "Home"
+# ===== END SAFETY INIT =====
+
 
 class MedwiseApp:
     def __init__(self):
