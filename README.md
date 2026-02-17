@@ -158,7 +158,7 @@ http://localhost:8501
 ## Live Demo
 
  **Try the Medwise-Women App here:**  
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-brightgreen)](https://medwise-women-6epbkmzpdjgtueoiv3ea4e.streamlit.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-brightgreen)](https://medwise-women-yrkfdnarwehc7mpbvoru3o.streamlit.app/)
 
 ## Disclaimer
 
